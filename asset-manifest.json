@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/color-image-search/static/css/main.52080680.css",
+    "main.js": "/color-image-search/static/js/main.71d6b578.js",
+    "static/media/no-image.png": "/color-image-search/static/media/no-image.ebbc7b17947644e301a0.png",
+    "index.html": "/color-image-search/index.html",
+    "main.52080680.css.map": "/color-image-search/static/css/main.52080680.css.map",
+    "main.71d6b578.js.map": "/color-image-search/static/js/main.71d6b578.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.52080680.css",
+    "static/js/main.71d6b578.js"
+  ]
+}
