@@ -1,7 +1,8 @@
+import { ColorPaletteProps } from 'interfaces/AllTypes.interfaces';
 import { useState } from 'react';
 import './ColorPalette.css';
 
-const ColorPalette = ({ setKeyword, setPage }) => {
+const ColorPalette = ({ setKeyword, setPage }: ColorPaletteProps) => {
   const [currentIdx, setCurrentIdx] = useState(0);
   const colors = [
     'red',
@@ -15,7 +16,7 @@ const ColorPalette = ({ setKeyword, setPage }) => {
     'black',
     'white',
   ];
-  const onClick = (color, idx) => {
+  const onClick = (color: string, idx: number) => {
     // ! 색상 페이지가 바뀔때 스크롤의 위치로 인해 무한스크롤 이벤트가 작동하는 것 방지
     window.scrollTo({
       top: 0,
@@ -39,7 +40,9 @@ const ColorPalette = ({ setKeyword, setPage }) => {
             }}
             className="palette_item"
           ></div>
-          <div className="item_text">{color[0].toUpperCase() + color.slice(1)}</div>
+          <div className="item_text">
+            {color[0].toUpperCase() + color.slice(1)}
+          </div>
         </div>
       ))}
       <span className="palette_item_text">

@@ -1,8 +1,9 @@
 import './Header.css';
 import ColorPalette from './ColorPalette';
 import { FaGithub, FaEnvelope } from 'react-icons/fa';
+import { HeaderProps } from 'interfaces/AllTypes.interfaces';
 
-const Header = ({ keyword, setKeyword, setPage }) => {
+const Header = ({ keyword, setKeyword, setPage }: HeaderProps) => {
   return (
     <header>
       <h1>{keyword} AESTHETIC</h1>

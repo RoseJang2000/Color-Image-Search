@@ -27,7 +27,7 @@ article a {
 }
 
 article:hover .image_item_div > img {
-  filter: grayscale();
+  filter: grayscale(1);
   transition: 0.2s;
 }
 

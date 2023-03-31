@@ -28,11 +28,13 @@ const TopButton = () => {
   });
 
   return (
-    showButton && (
-      <StyledTopButton id="top" onClick={scrollToTop}>
-        <RxDoubleArrowUp />
-      </StyledTopButton>
-    )
+    <>
+      {showButton && (
+        <StyledTopButton id="top" onClick={scrollToTop}>
+          <RxDoubleArrowUp />
+        </StyledTopButton>
+      )}
+    </>
   );
 };
 

@@ -1,14 +1,20 @@
 import { useEffect, useState } from 'react';
-import ImageItem from '../components/ImageItem';
+import ImageItem from 'components/ImageItem';
 import axios from 'axios';
 import './ImageItemList.css';
-import TopButton from './TopButton';
+import TopButton from 'components/TopButton';
 import Masonry from 'react-masonry-css';
+import {
+  ImageItemListProps,
+  RequestParams,
+  ResponseData,
+} from 'interfaces/AllTypes.interfaces';
+import Kakao from 'api/Kakao';
 
-const ImageItemList = ({ keyword, page, setPage }) => {
-  const [prevKeyword, setPrevKeyword] = useState(keyword);
-  const [datas, setDatas] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+const ImageItemList = ({ keyword, page, setPage }: ImageItemListProps) => {
+  const [prevKeyword, setPrevKeyword] = useState<string>(keyword);
+  const [datas, setDatas] = useState<ResponseData[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   // * 화면 크기에 따라 layout column 숫자 변경
   const changeGap = () => {
@@ -27,21 +33,15 @@ const ImageItemList = ({ keyword, page, setPage }) => {
     setGap(() => changeGap());
   };
 
-  const [gap, setGap] = useState(() => changeGap());
+  const [gap, setGap] = useState<number>(() => changeGap());
 
   // ! 카카오 검색 API 데이터 가져오기
-  const Kakao = axios.create({
-    baseURL: 'https://dapi.kakao.com',
-    headers: {
-      Authorization: process.env.REACT_APP_KAKAO_REST_API_KEY,
-    },
-  });
 
-  const imageSearch = (params) => {
+  const imageSearch = (params: RequestParams) => {
     return Kakao.get('/v2/search/image', { params });
   };
 
-  const imageSearchHttpHandler = async (query, page) => {
+  const imageSearchHttpHandler = async (query: string, page: number) => {
     const params = {
       query: `${query} aesthetic`,
       page,
@@ -54,13 +54,8 @@ const ImageItemList = ({ keyword, page, setPage }) => {
   };
 
   useEffect(() => {
-    // console.log('page: ', page);
-    // console.log('keyword: ', keyword);
-    // console.log('prevKeyword: ', prevKeyword);
-
     if (keyword !== prevKeyword) {
       // ! keyword(색상)가 바뀔 경우에는 Datas에 있는 사진을 초기화
-      // console.log('Clear Data!');
       setDatas([]);
     }
 
@@ -93,7 +88,11 @@ const ImageItemList = ({ keyword, page, setPage }) => {
         {isLoading ? (
           ''
         ) : (
-          <Masonry breakpointCols={gap} className="list" columnClassName="column">
+          <Masonry
+            breakpointCols={gap}
+            className="list"
+            columnClassName="column"
+          >
             {datas.map((data, idx) => (
               <ImageItem key={idx} data={data} />
             ))}
